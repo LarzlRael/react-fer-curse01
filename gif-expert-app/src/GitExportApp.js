@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import AddCategory from './AddCategory';
 import GifGrid from './components/GifGrid';
 
-const GitExportApp = () => {
+const GitExportApp = ({ defaultCategories = [] }) => {
 
     //const categories = ['Dragon Ball', 'naruto', 'my hero academia']
-    const [categories, setCategories] = useState(['Dragon Ball']);
+    const [categories, setCategories] = useState(defaultCategories);
 
     // const handleAdd = () => {
     //     // add a new category by spreed operator
@@ -26,8 +26,8 @@ const GitExportApp = () => {
 
 
             <ol>
-                {categories.map(cat => (
-                    <GifGrid category={cat} />
+                {categories.map(category => (
+                    <GifGrid category={category} key={category} />
                 ))}
             </ol>
         </>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types';
+
 const AddCategory = ({ setCategories }) => {
 
     const [inputValue, setInputValue] = useState('');
@@ -7,7 +8,9 @@ const AddCategory = ({ setCategories }) => {
     const handleInputChange = (e) => {
 
         setInputValue(e.target.value);
+        console.log('HandleInputChange Llamado');
     }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Submit hecho');
@@ -18,7 +21,7 @@ const AddCategory = ({ setCategories }) => {
     }
     return (
         <form onSubmit={handleSubmit}>
-
+                <p> {inputValue}</p>
             <input
                 onChange={handleInputChange}
                 type="text"
