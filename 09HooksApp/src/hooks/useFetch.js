@@ -25,19 +25,23 @@ export const useFetch = (url) => {
             .then(resp => resp.json())
             .then(data => {
 
-                setTimeout(() => {
-                    if (isMounted.current) {
-                        // simulate 4 secods delay request
-                        setState({
-                            loading: false,
-                            error: null,
-                            data
-                        })
-                    } else {
-                        console.log('Component unmounted')
-                    }
-                }, 4000)
-            });
+
+                if (isMounted.current) {
+                    // simulate 4 secods delay request
+                    setState({
+                        loading: false,
+                        error: null,
+                        data
+                    })
+                }
+            }).catch(() => {
+                setState({
+                    data: null,
+                    loading: false,
+                    error: 'No se pudo cargar la info prro',
+                });
+            } )
+            
     }, [url])
 
     return state;

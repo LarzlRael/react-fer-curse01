@@ -13,13 +13,14 @@ import ReactDOM from 'react-dom';
 // // import RealExampleRef from './componentes/04-useRef/RealExampleRef';
 // //import HookApp from './HookApp';
 
-import { TodoApp } from "./componentes/08-useReducer/TodoApp";
+// import { TodoApp } from "./componentes/08-useReducer/TodoApp";
+import { MainApp } from './componentes/09.useContext/MainApp';
 
 
 
 
 ReactDOM.render(
-  <TodoApp />,
+  <MainApp />,
   document.getElementById('root')
 );
 
