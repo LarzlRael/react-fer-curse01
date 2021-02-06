@@ -2,6 +2,7 @@ import { types } from "../../types/types"
 import { facebookAuthProvider, firebase, googleAuthProvider } from '../../firebase/firebase-Config'
 import { finishLoading, startLoading } from "./ui"
 import Swal from 'sweetalert2';
+import { notesLogout } from "./notes";
 
 export const startLoginEmailPassword = (email, password) => {
     return (dispatch) => {
@@ -16,9 +17,9 @@ export const startLoginEmailPassword = (email, password) => {
 
             })
             .catch(e => {
-                
+
                 dispatch(finishLoading());
-                Swal.fire('Error',e.message,'error');
+                Swal.fire('Error', e.message, 'error');
             })
 
     }
@@ -75,15 +76,20 @@ export const startRegisterWithEmailPassword = (email, password, name) => {
             })
             .catch(e => {
                 console.log(e);
-                Swal.fire('Error',e.message,'error');
+                Swal.fire('Error', e.message, 'error');
             })
     }
 }
 
 export const startLogout = () => {
     return async (dispatch) => {
+
         await firebase.auth().signOut();
-        dispatch(logout())
+
+        dispatch(logout());
+        
+        dispatch(notesLogout());
+
     }
 }
 

@@ -1,39 +1,70 @@
 import React from 'react'
-
+import { useDispatch, useSelector } from 'react-redux';
+import moment from 'moment';
+import { activeNote } from '../actions/notes';
 export const JournalEntries = () => {
-    const entries = [1, 2, 3, 4, 5];
+
+    const { notes } = useSelector(state => state.notes);
+    
     return (
-        <div className="journal__entries">
+        <div className="journal__entries pointer  animate__animated animate__fadeIn animate__faster">
             {
-                entries.map(value => (
-                    <JournalEntry key={value} />
+                notes.map(note => (
+                    <JournalEntry
+                        key={note.id}
+                        {...note}
+                    />
                 ))
             }
         </div>
     )
 }
 
-const JournalEntry = () => {
+const JournalEntry = ({ id, date, title, body, url }) => {
+
+    const noteDate = moment(date);
+
+    const dispatch = useDispatch();
+
+    const handleEntryClick = () => {
+        dispatch(
+            activeNote(id, {
+                date, title, body, url
+            })
+        );
+    }
+
     return (
-        <div className="journal__entry">
-            <div
-                className="journal__entry-picture"
-                style={{
-                    backgroundSize: 'cover',
-                    backgroundImage: 'url(https://image.shutterstock.com/image-photo/white-transparent-leaf-on-mirror-260nw-1029171697.jpg)'
-                }}
-            >
-            </div>
+        <div
+            className="journal__entry"
+            onClick={handleEntryClick}
+        >
+
+            { url &&
+
+                <div
+                    className="journal__entry-picture"
+                    style={{
+                        backgroundSize: 'cover',
+                        backgroundImage: `url(${url})`
+                    }}
+                >
+                </div>
+            }
 
             <div className="journal__entry-body">
-                <p className="journal__entry-title">Un nuevo dia</p>
-                <p className="journal__entry-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora eaque nihil hic modi neque, eum, illo adipisci dignissimos sit corrupti optio inventore veritatis aliquam, asperiores voluptas. Ducimus ipsam repellat voluptate.</p>
+                <p className="journal__entry-title">
+                    {title}
+                </p>
+                <p className="journal__entry-content">
+                    {body}
+                </p>
 
             </div>
 
             <div className="journal__entrey-date-box">
-                <span>Monday</span>
-                <h4>28</h4>
+                <span>{noteDate.format('dddd')}</span>
+                <h4>{noteDate.format('Do')}</h4>
             </div>
         </div>
     )

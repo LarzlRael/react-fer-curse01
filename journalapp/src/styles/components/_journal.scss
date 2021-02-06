@@ -43,7 +43,9 @@
 .journal__entry {
     background-color: white;
     border-radius: 4px;
+    color: $dark-grey;
     display: flex;
+    justify-content: space-between;
     margin-bottom: 10px;
     overflow: hidden;
 }
@@ -59,7 +61,6 @@
 .journal__entry-title {
     font-size: 14px;
     font-weight: bold;
-    
 }
 .journal__entry-content {
     font-size: 10px;
