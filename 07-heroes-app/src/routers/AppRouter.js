@@ -15,7 +15,7 @@ import { PublicRoute } from './PublicRoute';
 export default function AppRouter() {
 
     const { user } = useContext(AuthContext);
-    console.log(user);
+    
     return (
         <Router>
             <div>
@@ -34,7 +34,6 @@ export default function AppRouter() {
                         component={DashboardRoutes}
                         isAuthenticaded={user.logged}
                     />
-
 
                 </Switch>
             </div>

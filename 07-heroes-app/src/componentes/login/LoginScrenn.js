@@ -19,7 +19,7 @@ export const LoginScrenn = ({ history }) => {
         dispatch({
             type: types.login,
             payload: {
-                name: 'larz'
+                name: 'Larz'
             }
         });
 
